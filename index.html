@@ -12,32 +12,49 @@
 </head>
 
 <body>
-  <div class="button-box">
-    <button class="crystal" value="0">Purple</button>
-    <button class="crystal" value="1">Yellow</button>
-    <button class="crystal" value="2">Blue</button>
-    <button class="crystal" value="3">Red</button>
-  </div>
+  <aside class="instructions">
+    <h2>Rules</h2>
+    <ul>
+      <li>Touch a crystal to add its number of points to your score.</li>
+      <li>To win, match the goal score exactly.</li>
+      <li>Go over the goal and lose!</li>
+      <li>Each game, the crystals change values.</li>
+      <li>Will fate decide the rest?</li>
+    </ul>
+  </aside>
 
-  <div class="readout-group">
-    <label for="goal-number">Goal Number:</label>
-    <output id="goal-number"></output>
-  </div>
+  <main>
+    <div class="goal-box">
+      <div class="readout-group">
+        <label for="goal-number">Goal Number:</label>
+        <output id="goal-number"></output>
+      </div>
+    </div>
 
-  <div class="readout-group">
-    <label for="score">Score:</label>
-    <output id="score"></output>
-  </div>
+    <div class="button-box">
+      <button class="crystal" value="0">Purple</button>
+      <button class="crystal" value="1">Yellow</button>
+      <button class="crystal" value="2">Blue</button>
+      <button class="crystal" value="3">Red</button>
+    </div>
 
-  <div class="readout-group">
-    <label for="wins">Wins:</label>
-    <output id="wins"></output>
-  </div>
+    <div class="stats-box">
+      <div class="readout-group">
+        <label for="score">Score:</label>
+        <output id="score"></output>
+      </div>
 
-  <div class="readout-group">
-    <label for="losses">Losses:</label>
-    <output id="losses"></output>
-  </div>
+      <div class="readout-group">
+        <label for="wins">Wins:</label>
+        <output id="wins"></output>
+      </div>
+
+      <div class="readout-group">
+        <label for="losses">Losses:</label>
+        <output id="losses"></output>
+      </div>
+    </div>
+  </main>
 </body>
 
 </html>
