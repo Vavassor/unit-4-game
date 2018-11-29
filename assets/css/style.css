@@ -1,18 +1,41 @@
 body {
+  background: #ffffff url("../images/hex-pattern.png") repeat;
   display: grid;
   grid-template-areas:
+    "header"
     "instructions"
     "main";
   grid-template-columns: 1fr;
 }
 
+h1 {
+  font: bold 2em "Megrim", serif;
+  margin: 0.67em 0;
+}
+
 h2 {
-  font-size: 1.5em;
+  font: bold 1.5em "Megrim", serif;
   margin: 0.83em 0;
+}
+
+header {
+  grid-area: header;
+}
+
+label {
+  font: normal 1.3em "Podkova", serif;
 }
 
 main {
   grid-area: main;
+}
+
+ol {
+  font: normal 1.3em "Podkova", serif;
+}
+
+output {
+  font: normal 1.3em "Podkova", serif;
 }
 
 .button-box {
@@ -31,13 +54,30 @@ main {
   margin-right: 0;
 }
 
-.goal-box {
+.goal-group {
+  align-items: center;
+  background-color: #ff0f3b;
+  display: flex;
+  justify-content: space-between;
   padding: 1em;
+}
+
+.goal-label {
+  align-self: flex-end;
 }
 
 .instructions {
   grid-area: instructions;
   padding: 0 1em;
+}
+
+.instruction-list {
+  list-style-type: decimal;
+  padding-left: 1em;
+}
+
+.points {
+  font: normal 6em monospace;
 }
 
 .readout-group {
@@ -48,18 +88,37 @@ main {
   margin-right: 0;
 }
 
+.score-group {
+  align-items: center;
+  background-color: #afafaf;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.score-label {
+  align-self: flex-start;
+}
+
 .stats-box {
   display: flex;
+  justify-content: center;
   padding: 1em;
 }
 
 @media screen and (min-width: 576px) {
   body {
-    grid-template-areas: ". main instructions .";
+    grid-template-areas:
+      ". header header ."
+      ". main instructions .";
     grid-template-columns: 1fr 300px 240px 1fr;
   }
 
   .goal-box {
+    padding: 1em 0;
+  }
+
+  .score-box {
     padding: 1em 0;
   }
 
