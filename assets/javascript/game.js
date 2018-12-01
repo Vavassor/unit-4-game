@@ -7,28 +7,6 @@ let score = 0;
 let wins = 0;
 
 
-class Colour {
-  constructor(red, green, blue) {
-    this.r = red;
-    this.g = green;
-    this.b = blue;
-  }
-
-  makeRgbText() {
-    return "rgb(" + this.r + ", " + this.g + ", " + this.b + ")";
-  }
-
-  // Compute a colour some fraction of the way between two colours by linearly
-  // interpolating their components.
-  static blend(v0, v1, t) {
-    const r = Math.floor(lerp(v0.r, v1.r, t));
-    const g = Math.floor(lerp(v0.g, v1.g, t));
-    const b = Math.floor(lerp(v0.b, v1.b, t));
-    return new Colour(r, g, b);
-  }
-}
-
-
 function animateScoreColour() {
   const mix = score / goalNumber;
   const endColour = new Colour(255, 15, 59);
@@ -36,6 +14,23 @@ function animateScoreColour() {
   const colour = Colour.blend(startColour, endColour, mix);
   const value = colour.makeRgbText();
   $(".score-group").css("background-color", value);
+}
+
+function changeCrystalImages() {
+  const colourCount = 8;
+  const shapeCount = 4;
+
+  let colours = makeArrayCountingUpward(colourCount);
+  let shapes = makeArrayCountingUpward(shapeCount);
+  shuffle(colours);
+  shuffle(shapes);
+
+  // Picking the first four of the shuffled arrays gives non-repeating random
+  // colours and shapes, meaning two of the same image won't pop up.
+  for (let i = 0; i < 4; i++) {
+    const source = "assets/images/Gem-" + shapes[i] + "-" + colours[i] + ".png";
+    $("#crystal-" + i).attr("src", source);
+  }
 }
 
 function chooseCrystal(index) {
@@ -52,26 +47,21 @@ function chooseCrystal(index) {
   }
 }
 
-// Compute a number some fraction of the way between two numbers (linear
-// interpolation). t is the fraction from 0 to 1, and v0 and v1 are the numbers.
-function lerp(v0, v1, t) {
-  return ((1 - t) * v0) + (t * v1);
-}
-
 function lose() {
   losses++;
   $("#losses").text(losses);
   startNewGame();
 }
 
-function randomIntRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function startNewGame() {
+function regenerateCrystals() {
   for (let i = 0; i < 4; i++) {
     crystalValues[i] = randomIntRange(1, 12);
   }
+  changeCrystalImages();
+}
+
+function startNewGame() {
+  regenerateCrystals();
   goalNumber = randomIntRange(19, 120);
   score = 0;
   $("#goal-number").text(goalNumber);
